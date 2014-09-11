@@ -267,6 +267,7 @@
     <Content Include="Views\Schedule\Move.cshtml" />
     <Content Include="Views\Schedule\ActivityView.cshtml" />
     <Content Include="Views\Schedule\LinkView.cshtml" />
+    <Content Include="Views\Schedule\CreateLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

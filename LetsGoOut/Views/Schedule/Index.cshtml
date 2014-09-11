@@ -1,12 +1,34 @@
-﻿@model IEnumerable<LetsGoOut.ReadModel.Activity>
+﻿@using LetsGoOut.ReadModel
+@model IEnumerable<Activity>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Schedule</h2>
-@foreach (var a in Model)
-{
-    @(a.IsActivity == 1 ? Html.Partial("ActivityView", a) : Html.Partial("LinkView", a))
+@{
+    Activity previous = null;
+    foreach (var activityItem in Model)
+    {
+        ViewBag.Previous = 0;
+        ViewBag.Next = 0;
+
+        if (activityItem.IsActivity == 0)
+        {
+            @Html.Partial("LinkView", activityItem)
+        }
+        if (activityItem.IsActivity == 1)
+        {
+            if (previous != null && previous.IsActivity == 1)
+            {
+                ViewBag.Previous = previous.ActivityId;
+                ViewBag.Next = activityItem.ActivityId;
+
+                @Html.Partial("LinkView", new Activity())
+            }
+            @Html.Partial("ActivityView", activityItem)
+        }
+        previous = activityItem;
+    }
 }
 
 @Html.ActionLink("Add", "Create")

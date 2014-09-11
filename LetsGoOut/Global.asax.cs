@@ -47,6 +47,8 @@ namespace LetsGoOut
 
             builder.RegisterType<ActivityService>()
                 .As<IActivityService>();
+            builder.RegisterType<LinkService>()
+                .As<ILinkService>();
         }
     }
 }

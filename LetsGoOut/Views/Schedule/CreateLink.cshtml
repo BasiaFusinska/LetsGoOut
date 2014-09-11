@@ -1,0 +1,17 @@
+﻿@model LetsGoOut.Domain.Requests.CreateLinkRequest
+
+@{
+    ViewBag.Title = "Create Link";
+}
+
+<h2>Link</h2>
+
+@using (Html.BeginForm())
+{
+    
+    @Html.TextBoxFor(model => model.LinkType)
+    
+    <input type="submit" value="CreateLink">
+}
+
+    

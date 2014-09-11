@@ -15,6 +15,8 @@ namespace LetsGoOut.Domain.Services
 
         public void CreateActivity(CreateActivityRequest createActivityRequest)
         {
+            //TODO: Check if there are any links that time and rewire them
+
             _context.Set<Activity>().Add(new Activity
             {
                 Name = createActivityRequest.Name,

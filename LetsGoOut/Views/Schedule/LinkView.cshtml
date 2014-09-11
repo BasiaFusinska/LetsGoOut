@@ -1,5 +1,16 @@
 ﻿@model LetsGoOut.ReadModel.Activity
+@{
+    var previous = (int) ViewBag.Previous;
+    var next = (int) ViewBag.Next;
+}
 
 <div>
-    @Model.Type
+    @if (Model.Type == 0)
+    {
+        @Html.ActionLink(Model.Type.ToString(), "CreateLink", new { previous = @previous, next = @next})
+    }
+    else
+    {
+        @Model.Type
+    }
 </div>

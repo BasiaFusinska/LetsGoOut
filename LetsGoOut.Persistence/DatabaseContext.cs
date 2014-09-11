@@ -11,6 +11,7 @@ namespace LetsGoOut.Persistence
         }
         
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<Link> Links { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

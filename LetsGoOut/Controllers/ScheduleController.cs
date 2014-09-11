@@ -13,11 +13,15 @@ namespace LetsGoOut.Controllers
     public class ScheduleController : Controller, IDataBaseContainer
     {
         private readonly IActivityService _activityService;
+        private readonly ILinkService _linkService;
         private readonly DbContext _context;
 
-        public ScheduleController(IActivityService activityService, DbContext context)
+        public ScheduleController(IActivityService activityService,
+                                  ILinkService linkService,
+                                  DbContext context)
         {
             _activityService = activityService;
+            _linkService = linkService;
             _context = context;
         }
 
@@ -55,9 +59,18 @@ namespace LetsGoOut.Controllers
 
             return RedirectToAction("Index");
         }
-        public class ActivitiesModel
+
+        public ActionResult CreateLink(int previous, int next)
         {
-            public IEnumerable<Activity> Activities { get; set; } 
+            return View(new CreateLinkRequest { Next = next, Previous = previous});
+        }
+
+        [HttpPost]
+        public ActionResult CreateLink(CreateLinkRequest createLinkRequest)
+        {
+            _linkService.CreateLink(createLinkRequest);
+
+            return RedirectToAction("Index");
         }
 
         public class ActivityMove
