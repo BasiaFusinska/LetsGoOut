@@ -20,12 +20,9 @@ namespace LetsGoOut.Domain.Services
 
         public void CreateLink(CreateLinkModel createLinkModel)
         {
-            _context.Set<Link>().Add(new Link
-            {
-                LinkType = createLinkModel.LinkType,
-                Previous = createLinkModel.Previous,
-                Next = createLinkModel.Next
-            });
+            _context.Set<Link>().Add(new Link(createLinkModel.LinkType,
+                                              createLinkModel.Previous,
+                                              createLinkModel.Next));
         }
     }
 }

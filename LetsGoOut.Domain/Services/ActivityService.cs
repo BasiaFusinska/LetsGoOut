@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using LetsGoOut.Domain.DTOs;
 using LetsGoOut.Domain.Requests;
@@ -24,13 +23,10 @@ namespace LetsGoOut.Domain.Services
         {
             //TODO: Check if there are any links that time and rewire them
 
-            _context.Set<Activity>().Add(new Activity
-            {
-                Name = createActivityModel.Name,
-                StartAt = createActivityModel.StartAt,
-                EndAt = createActivityModel.EndAt,
-                ActivityType = createActivityModel.ActivityType
-            });
+            _context.Set<Activity>().Add(new Activity(createActivityModel.Name,
+                                                      createActivityModel.StartAt,
+                                                      createActivityModel.EndAt,
+                                                      createActivityModel.ActivityType));
         }
 
         public EditActivityModel EditActivityModel(EditActivityRequest editActivityRequest)
@@ -49,10 +45,10 @@ namespace LetsGoOut.Domain.Services
         public void EditActivity(EditActivityModel editActivityModel)
         {
             var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == editActivityModel.ActivityId);
-            activity.Name = editActivityModel.Name;
-            activity.StartAt = editActivityModel.StartAt;
-            activity.EndAt = editActivityModel.EndAt;
-            activity.ActivityType = editActivityModel.ActivityType;
+            activity.SetValues(editActivityModel.Name,
+                               editActivityModel.StartAt,
+                               editActivityModel.EndAt,
+                               editActivityModel.ActivityType);
         }
 
         public MoveActivityModel MoveActivityModel(MoveActivityRequest moveActivityRequest)
@@ -62,9 +58,7 @@ namespace LetsGoOut.Domain.Services
         public void Move(MoveActivityModel moveActivityModel)
         {
             var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == moveActivityModel.ActivityId);
-
-            activity.StartAt = activity.StartAt.Add(moveActivityModel.Offset);
-            activity.EndAt = activity.EndAt.Add(moveActivityModel.Offset);
+            activity.Move(moveActivityModel.Offset);
         }
     }
 }

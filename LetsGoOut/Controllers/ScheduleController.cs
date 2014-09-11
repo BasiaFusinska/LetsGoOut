@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Web.Mvc;
 using LetsGoOut.ActionFilters;
 using LetsGoOut.Domain.DTOs;
