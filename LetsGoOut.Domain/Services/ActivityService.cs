@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using LetsGoOut.Domain.DTOs;
 using LetsGoOut.Domain.Requests;
 
 namespace LetsGoOut.Domain.Services
@@ -14,23 +15,28 @@ namespace LetsGoOut.Domain.Services
             _context = context;
         }
 
-        public void CreateActivity(CreateActivityRequest createActivityRequest)
+        public CreateActivityModel CreateActivityModel(CreateActivityRequest createActivityRequest)
+        {
+            return new CreateActivityModel();
+        }
+
+        public void CreateActivity(CreateActivityModel createActivityModel)
         {
             //TODO: Check if there are any links that time and rewire them
 
             _context.Set<Activity>().Add(new Activity
             {
-                Name = createActivityRequest.Name,
-                StartAt = createActivityRequest.StartAt,
-                EndAt = createActivityRequest.EndAt,
-                ActivityType = createActivityRequest.ActivityType
+                Name = createActivityModel.Name,
+                StartAt = createActivityModel.StartAt,
+                EndAt = createActivityModel.EndAt,
+                ActivityType = createActivityModel.ActivityType
             });
         }
 
-        public EditActivityRequest GetActivity(int activityId)
+        public EditActivityModel EditActivityModel(EditActivityRequest editActivityRequest)
         {
-            var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == activityId);
-            return new EditActivityRequest
+            var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == editActivityRequest.ActivityId);
+            return new EditActivityModel
             {
                 ActivityId = activity.ActivityId,
                 Name = activity.Name,
@@ -40,21 +46,25 @@ namespace LetsGoOut.Domain.Services
             };
         }
 
-        public void EditActivity(EditActivityRequest editActivityRequest)
+        public void EditActivity(EditActivityModel editActivityModel)
         {
-            var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == editActivityRequest.ActivityId);
-            activity.Name = editActivityRequest.Name;
-            activity.StartAt = editActivityRequest.StartAt;
-            activity.EndAt = editActivityRequest.EndAt;
-            activity.ActivityType = editActivityRequest.ActivityType;
+            var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == editActivityModel.ActivityId);
+            activity.Name = editActivityModel.Name;
+            activity.StartAt = editActivityModel.StartAt;
+            activity.EndAt = editActivityModel.EndAt;
+            activity.ActivityType = editActivityModel.ActivityType;
         }
 
-        public void Move(MoveActivityRequest moveActivityRequest)
+        public MoveActivityModel MoveActivityModel(MoveActivityRequest moveActivityRequest)
         {
-            var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == moveActivityRequest.ActivityId);
+            return new MoveActivityModel { ActivityId = moveActivityRequest.ActivityId};
+        }
+        public void Move(MoveActivityModel moveActivityModel)
+        {
+            var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == moveActivityModel.ActivityId);
 
-            activity.StartAt = activity.StartAt.Add(moveActivityRequest.Offset);
-            activity.EndAt = activity.EndAt.Add(moveActivityRequest.Offset);
+            activity.StartAt = activity.StartAt.Add(moveActivityModel.Offset);
+            activity.EndAt = activity.EndAt.Add(moveActivityModel.Offset);
         }
     }
 }

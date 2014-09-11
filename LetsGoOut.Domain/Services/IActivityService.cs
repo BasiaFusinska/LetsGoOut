@@ -1,12 +1,15 @@
-﻿using LetsGoOut.Domain.Requests;
+﻿using LetsGoOut.Domain.DTOs;
+using LetsGoOut.Domain.Requests;
 
 namespace LetsGoOut.Domain.Services
 {
     public interface IActivityService
     {
-        void CreateActivity(CreateActivityRequest createActivityRequest);
-        EditActivityRequest GetActivity(int activityId);
-        void EditActivity(EditActivityRequest editActivityRequest);
-        void Move(MoveActivityRequest moveActivityRequest);
+        CreateActivityModel CreateActivityModel(CreateActivityRequest createActivityRequest);
+        void CreateActivity(CreateActivityModel createActivityModel);
+        EditActivityModel EditActivityModel(EditActivityRequest editActivityRequest);
+        void EditActivity(EditActivityModel editActivityModel);
+        MoveActivityModel MoveActivityModel(MoveActivityRequest moveActivityRequest);
+        void Move(MoveActivityModel moveActivityModel);
     }
 }

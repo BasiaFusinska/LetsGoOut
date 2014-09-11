@@ -47,6 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity.cs" />
+    <Compile Include="DTOs\CreateActivityModel.cs" />
+    <Compile Include="DTOs\CreateLinkModel.cs" />
+    <Compile Include="DTOs\EditActivityModel.cs" />
+    <Compile Include="DTOs\MoveActivityModel.cs" />
     <Compile Include="Link.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\MoveActivityRequest.cs" />

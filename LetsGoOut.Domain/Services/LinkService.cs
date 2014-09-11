@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using LetsGoOut.Domain.DTOs;
 using LetsGoOut.Domain.Requests;
 
 namespace LetsGoOut.Domain.Services
@@ -12,13 +13,18 @@ namespace LetsGoOut.Domain.Services
             _context = context;
         }
 
-        public void CreateLink(CreateLinkRequest createLinkRequest)
+        public CreateLinkModel CreateLinkModel(CreateLinkRequest createLinkRequest)
+        {
+            return new CreateLinkModel {Previous = createLinkRequest.Previous, Next = createLinkRequest.Next};
+        }
+
+        public void CreateLink(CreateLinkModel createLinkModel)
         {
             _context.Set<Link>().Add(new Link
             {
-                LinkType = createLinkRequest.LinkType,
-                Previous = createLinkRequest.Previous,
-                Next = createLinkRequest.Next
+                LinkType = createLinkModel.LinkType,
+                Previous = createLinkModel.Previous,
+                Next = createLinkModel.Next
             });
         }
     }
