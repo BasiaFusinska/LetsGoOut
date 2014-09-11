@@ -2,7 +2,7 @@
 
 namespace LetsGoOut.Domain.Requests
 {
-    public class MoveActivityRequest
+    public class MoveActivityRequest : IRequest
     {
         public int ActivityId { get; set; }
     }

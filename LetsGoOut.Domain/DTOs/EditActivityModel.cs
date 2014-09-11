@@ -2,7 +2,7 @@
 
 namespace LetsGoOut.Domain.DTOs
 {
-    public class EditActivityModel
+    public class EditActivityModel : ICommand
     {
         public int ActivityId { get; set; }
         public string Name { get; set; }

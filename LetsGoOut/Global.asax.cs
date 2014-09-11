@@ -58,6 +58,18 @@ namespace LetsGoOut
                 .As<IRequestHandler<CreateActivityRequest, CreateActivityModel>>()
                 .As<IHandler<CreateActivityModel>>();
 
+            builder.RegisterType<EditActivityHandler>()
+                .As<IRequestHandler<EditActivityRequest, EditActivityModel>>()
+                .As<IHandler<EditActivityModel>>();
+
+            builder.RegisterType<MoveActivityHandler>()
+                .As<IRequestHandler<MoveActivityRequest, MoveActivityModel>>()
+                .As<IHandler<MoveActivityModel>>();
+            
+            builder.RegisterType<CreateLinkHandler>()
+                .As<IRequestHandler<CreateLinkRequest, CreateLinkModel>>()
+                .As<IHandler<CreateLinkModel>>();
+
             builder.RegisterType<CommandsBus>()
                 .As<ICommandBus>();
         }

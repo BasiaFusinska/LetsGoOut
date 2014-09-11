@@ -4,23 +4,16 @@ using LetsGoOut.ActionFilters;
 using LetsGoOut.Domain;
 using LetsGoOut.Domain.DTOs;
 using LetsGoOut.Domain.Requests;
-using LetsGoOut.Domain.Services;
 using Activity = LetsGoOut.ReadModel.Activity;
 
 namespace LetsGoOut.Controllers
 {
     public class ScheduleController : Controller, IDataBaseContainer
     {
-        private readonly IActivityService _activityService;
-        private readonly ILinkService _linkService;
         private readonly ICommandBus _bus;
 
-        public ScheduleController(IActivityService activityService,
-                                  ILinkService linkService,
-                                  ICommandBus bus)
+        public ScheduleController(ICommandBus bus)
         {
-            _activityService = activityService;
-            _linkService = linkService;
             _bus = bus;
         }
 
@@ -47,41 +40,40 @@ namespace LetsGoOut.Controllers
 
         public ActionResult Edit(int activityId)
         {
-            var model = _activityService.EditActivityModel(new EditActivityRequest { ActivityId = activityId});
+            var model = _bus.GetModel4Request<EditActivityRequest, EditActivityModel>(new EditActivityRequest { ActivityId = activityId});
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Edit(EditActivityModel editActivityModel)
         {
-            _activityService.EditActivity(editActivityModel);
+            _bus.Send(editActivityModel);
             return RedirectToAction("Index"); 
         }
 
         public ActionResult Move(int activityId)
         {
-            var model = _activityService.MoveActivityModel(new MoveActivityRequest {ActivityId = activityId});
+            var model = _bus.GetModel4Request<MoveActivityRequest, MoveActivityModel>(new MoveActivityRequest { ActivityId = activityId });
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Move(MoveActivityModel moveActivityModel)
         {
-            _activityService.Move(moveActivityModel);
-
+            _bus.Send(moveActivityModel);
             return RedirectToAction("Index");
         }
 
         public ActionResult CreateLink(int previous, int next)
         {
-            var model = _linkService.CreateLinkModel(new CreateLinkRequest { Next = next, Previous = previous });
+            var model = _bus.GetModel4Request<CreateLinkRequest, CreateLinkModel>(new CreateLinkRequest { Next = next, Previous = previous });
             return View(model);
         }
 
         [HttpPost]
         public ActionResult CreateLink(CreateLinkModel createLinkModel)
         {
-            _linkService.CreateLink(createLinkModel);
+            _bus.Send(createLinkModel);
 
             return RedirectToAction("Index");
         }

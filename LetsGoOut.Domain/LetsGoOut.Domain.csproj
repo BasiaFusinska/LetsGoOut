@@ -84,6 +84,9 @@
     <Compile Include="DTOs\EditActivityModel.cs" />
     <Compile Include="DTOs\MoveActivityModel.cs" />
     <Compile Include="Handlers\CreateActivityHandler.cs" />
+    <Compile Include="Handlers\CreateLinkHandler.cs" />
+    <Compile Include="Handlers\EditActivityHandler.cs" />
+    <Compile Include="Handlers\MoveActivityHandler.cs" />
     <Compile Include="Link.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\MoveActivityRequest.cs" />
