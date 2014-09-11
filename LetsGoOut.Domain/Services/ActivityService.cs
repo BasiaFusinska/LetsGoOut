@@ -48,5 +48,13 @@ namespace LetsGoOut.Domain.Services
             activity.EndAt = editActivityRequest.EndAt;
             activity.ActivityType = editActivityRequest.ActivityType;
         }
+
+        public void Move(MoveActivityRequest moveActivityRequest)
+        {
+            var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == moveActivityRequest.ActivityId);
+
+            activity.StartAt = activity.StartAt.Add(moveActivityRequest.Offset);
+            activity.EndAt = activity.EndAt.Add(moveActivityRequest.Offset);
+        }
     }
 }

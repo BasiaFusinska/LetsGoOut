@@ -49,6 +49,7 @@
     <Compile Include="Activity.cs" />
     <Compile Include="Link.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\MoveActivityRequest.cs" />
     <Compile Include="Requests\EditActivityRequest.cs" />
     <Compile Include="Requests\CreateLinkRequest.cs" />
     <Compile Include="Requests\CreateActivityRequest.cs" />

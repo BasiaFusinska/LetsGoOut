@@ -4,4 +4,6 @@
     @Html.ActionLink(@Model.Name, "Edit", new {@Model.ActivityId}) <br/>
     @Model.StartAt.ToString("HH:mm") <br />
     @Model.Duration.ToString()
+    
+    @Html.ActionLink("Move", "Move", new { @Model.ActivityId })
 </div>

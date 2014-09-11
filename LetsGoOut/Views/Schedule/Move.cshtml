@@ -1,4 +1,4 @@
-﻿@model LetsGoOut.Controllers.ScheduleController.ActivityMove
+﻿@model LetsGoOut.Domain.Requests.MoveActivityRequest
 @{
     ViewBag.Title = "Move";
 }
@@ -7,7 +7,7 @@
 
 @using (Html.BeginForm())
 {
-    @Html.TextBoxFor(model => model.Move)
+    @Html.TextBoxFor(model => model.Offset)
     
     <input type="submit" value="Move">
 }

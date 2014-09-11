@@ -58,16 +58,15 @@ namespace LetsGoOut.Controllers
             return RedirectToAction("Index"); 
         }
 
-        public ActionResult Move(int activityId, string name)
+        public ActionResult Move(int activityId)
         {
-            return View(new ActivityMove { ActivityId = activityId, Move = name });
+            return View(new MoveActivityRequest { ActivityId = activityId });
         }
 
         [HttpPost]
-        public ActionResult Move(ActivityMove activityMove)
+        public ActionResult Move(MoveActivityRequest moveActivityRequest)
         {
-            var activity = _context.Set<Domain.Activity>().FirstOrDefault(a => a.ActivityId == activityMove.ActivityId);
-            activity.Name = activityMove.Move;
+            _activityService.Move(moveActivityRequest);
 
             return RedirectToAction("Index");
         }
@@ -83,12 +82,6 @@ namespace LetsGoOut.Controllers
             _linkService.CreateLink(createLinkRequest);
 
             return RedirectToAction("Index");
-        }
-
-        public class ActivityMove
-        {
-            public int ActivityId { get; set; }
-            public string Move { get; set; }
         }
 
         public dynamic DataBase { get; set; }

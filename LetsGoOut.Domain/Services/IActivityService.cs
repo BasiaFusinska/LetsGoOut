@@ -7,5 +7,6 @@ namespace LetsGoOut.Domain.Services
         void CreateActivity(CreateActivityRequest createActivityRequest);
         EditActivityRequest GetActivity(int activityId);
         void EditActivity(EditActivityRequest editActivityRequest);
+        void Move(MoveActivityRequest moveActivityRequest);
     }
 }
