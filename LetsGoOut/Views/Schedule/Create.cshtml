@@ -1,0 +1,15 @@
+﻿@model LetsGoOut.ReadModel.Activity
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Activity</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBoxFor(model => model.Name)
+    
+    <input type="submit" value="Create">
+}
+
+    

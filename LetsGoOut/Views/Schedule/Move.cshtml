@@ -1,0 +1,15 @@
+﻿@model LetsGoOut.Controllers.ScheduleController.ActivityMove
+@{
+    ViewBag.Title = "Move";
+}
+
+<h2>Activity Move</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBoxFor(model => model.Move)
+    
+    <input type="submit" value="Move">
+}
+
+    

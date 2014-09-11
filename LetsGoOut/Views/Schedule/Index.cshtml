@@ -1,0 +1,14 @@
+﻿@model LetsGoOut.Controllers.ScheduleController.ActivitiesModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Schedule</h2>
+@foreach (var a in Model.Activities)
+{
+    @(a.IsActivity == 1 ? Html.Partial("ActivityView", a) : Html.Partial("LinkView", a))
+}
+
+@Html.ActionLink("Add", "Create")
+
+    
