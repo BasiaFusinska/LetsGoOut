@@ -2,7 +2,7 @@
 
 namespace LetsGoOut.Domain.DTOs
 {
-    public class CreateActivityModel
+    public class CreateActivityModel : ICommand
     {
         public string Name { get; set; }
         public DateTime StartAt { get; set; }

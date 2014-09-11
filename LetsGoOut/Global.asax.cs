@@ -5,6 +5,10 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
+using LetsGoOut.Domain;
+using LetsGoOut.Domain.DTOs;
+using LetsGoOut.Domain.Handlers;
+using LetsGoOut.Domain.Requests;
 using LetsGoOut.Domain.Services;
 using LetsGoOut.Persistence;
 
@@ -49,6 +53,13 @@ namespace LetsGoOut
                 .As<IActivityService>();
             builder.RegisterType<LinkService>()
                 .As<ILinkService>();
+
+            builder.RegisterType<CreateActivityHandler>()
+                .As<IRequestHandler<CreateActivityRequest, CreateActivityModel>>()
+                .As<IHandler<CreateActivityModel>>();
+
+            builder.RegisterType<CommandsBus>()
+                .As<ICommandBus>();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace LetsGoOut.Domain.Requests
 {
-    public class CreateActivityRequest
+    public class CreateActivityRequest : IRequest
     {
     }
 }
