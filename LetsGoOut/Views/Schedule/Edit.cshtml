@@ -1,0 +1,21 @@
+﻿@model LetsGoOut.Domain.Requests.EditActivityRequest
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Activity</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBoxFor(model => model.Name)
+    
+    @Html.EditorFor(model => model.StartAt)
+    
+    @Html.EditorFor(model => model.EndAt)
+    
+    @Html.TextBoxFor(model => model.ActivityType)
+    
+    <input type="submit" value="Save">
+}
+
+    

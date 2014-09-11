@@ -1,7 +1,7 @@
 ﻿@model LetsGoOut.ReadModel.Activity
 
 <div>
-    @Model.Name <br/>
+    @Html.ActionLink(@Model.Name, "Edit", new {@Model.ActivityId}) <br/>
     @Model.StartAt.ToString("HH:mm") <br />
     @Model.Duration.ToString()
 </div>

@@ -46,6 +46,18 @@ namespace LetsGoOut.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Edit(int activityId)
+        {
+            return View(_activityService.GetActivity(activityId));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditActivityRequest editActivityRequest)
+        {
+            _activityService.EditActivity(editActivityRequest);
+            return RedirectToAction("Index"); 
+        }
+
         public ActionResult Move(int activityId, string name)
         {
             return View(new ActivityMove { ActivityId = activityId, Move = name });

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
 using LetsGoOut.Domain.Requests;
 
 namespace LetsGoOut.Domain.Services
@@ -24,6 +25,28 @@ namespace LetsGoOut.Domain.Services
                 EndAt = createActivityRequest.EndAt,
                 ActivityType = createActivityRequest.ActivityType
             });
+        }
+
+        public EditActivityRequest GetActivity(int activityId)
+        {
+            var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == activityId);
+            return new EditActivityRequest
+            {
+                ActivityId = activity.ActivityId,
+                Name = activity.Name,
+                StartAt = activity.StartAt,
+                EndAt = activity.EndAt,
+                ActivityType = activity.ActivityType
+            };
+        }
+
+        public void EditActivity(EditActivityRequest editActivityRequest)
+        {
+            var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == editActivityRequest.ActivityId);
+            activity.Name = editActivityRequest.Name;
+            activity.StartAt = editActivityRequest.StartAt;
+            activity.EndAt = editActivityRequest.EndAt;
+            activity.ActivityType = editActivityRequest.ActivityType;
         }
     }
 }
