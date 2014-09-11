@@ -5,6 +5,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
+using LetsGoOut.Domain.Services;
 using LetsGoOut.Persistence;
 
 namespace LetsGoOut
@@ -43,6 +44,9 @@ namespace LetsGoOut
                 .As<DbContext>()
                 .InstancePerRequest()
                 .OnRelease(context => context.SaveChanges());
+
+            builder.RegisterType<ActivityService>()
+                .As<IActivityService>();
         }
     }
 }

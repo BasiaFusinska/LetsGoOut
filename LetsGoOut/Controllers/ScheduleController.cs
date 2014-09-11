@@ -4,16 +4,20 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using LetsGoOut.ActionFilters;
+using LetsGoOut.Domain.Requests;
+using LetsGoOut.Domain.Services;
 using LetsGoOut.ReadModel;
 
 namespace LetsGoOut.Controllers
 {
     public class ScheduleController : Controller, IDataBaseContainer
     {
+        private readonly IActivityService _activityService;
         private readonly DbContext _context;
 
-        public ScheduleController(DbContext context)
+        public ScheduleController(IActivityService activityService, DbContext context)
         {
+            _activityService = activityService;
             _context = context;
         }
 
@@ -21,23 +25,19 @@ namespace LetsGoOut.Controllers
         public ActionResult Index()
         {
             var activities = DataBase.ActivityViews.FindAllByDate(DateTime.Today).OrderByStartAt().ToList<Activity>();
-            var model = new ActivitiesModel
-            {
-                Activities = activities
-            };
 
-            return View(model);
+            return View(activities);
         }
 
         public ActionResult Create()
         {
-            return View(new Activity());
+            return View(new CreateActivityRequest());
         }
 
         [HttpPost]
-        public ActionResult Create(Activity activity)
+        public ActionResult Create(CreateActivityRequest createActivityRequest)
         {
-            _context.Set<Domain.Activity>().Add(new Domain.Activity {Name = activity.Name});
+            _activityService.CreateActivity(createActivityRequest);
 
             return RedirectToAction("Index");
         }

@@ -1,4 +1,4 @@
-﻿@model LetsGoOut.ReadModel.Activity
+﻿@model LetsGoOut.Domain.Requests.CreateActivityRequest
 @{
     ViewBag.Title = "Create";
 }
@@ -8,6 +8,12 @@
 @using (Html.BeginForm())
 {
     @Html.TextBoxFor(model => model.Name)
+    
+    @Html.EditorFor(model => model.StartAt)
+    
+    @Html.EditorFor(model => model.EndAt)
+    
+    @Html.TextBoxFor(model => model.ActivityType)
     
     <input type="submit" value="Create">
 }

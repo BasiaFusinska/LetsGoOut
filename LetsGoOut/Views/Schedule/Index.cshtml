@@ -1,10 +1,10 @@
-﻿@model LetsGoOut.Controllers.ScheduleController.ActivitiesModel
+﻿@model IEnumerable<LetsGoOut.ReadModel.Activity>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Schedule</h2>
-@foreach (var a in Model.Activities)
+@foreach (var a in Model)
 {
     @(a.IsActivity == 1 ? Html.Partial("ActivityView", a) : Html.Partial("LinkView", a))
 }

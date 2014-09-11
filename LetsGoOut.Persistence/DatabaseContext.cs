@@ -15,7 +15,6 @@ namespace LetsGoOut.Persistence
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        //    modelBuilder.Entity<Activity>().HasKey(a => a.ActivityId);
         }
     }
 }
