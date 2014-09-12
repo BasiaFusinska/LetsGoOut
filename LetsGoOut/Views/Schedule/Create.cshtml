@@ -1,21 +1,48 @@
 ﻿@model LetsGoOut.Domain.DTOs.CreateActivityModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Activity";
+    var types = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "1", Text = "Eating"},
+        new SelectListItem {Value="2", Text = "Culture"},
+        new SelectListItem {Value="3", Text = "Eating"}
+    };
 }
 
-<h2>Activity</h2>
+<h2>Create Activity</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Schedule", FormMethod.Post, new { @class = "form-horizontal"}))
 {
-    @Html.TextBoxFor(model => model.Name)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class="col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Name, new { @class="form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartAt, "From", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.StartAt, new { @class="form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndAt, "To", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.EndAt, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ActivityType, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(model => model.ActivityType, types, new { @class = "form-control" })
+        </div>
+    </div>    
     
-    @Html.EditorFor(model => model.StartAt)
-    
-    @Html.EditorFor(model => model.EndAt)
-    
-    @Html.TextBoxFor(model => model.ActivityType)
-    
-    <input type="submit" value="Create">
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" value="Create" class="btn btn-default">
+        </div>
+    </div>
 }
 
     

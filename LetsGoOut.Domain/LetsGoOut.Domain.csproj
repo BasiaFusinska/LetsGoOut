@@ -83,6 +83,7 @@
     <Compile Include="DTOs\CreateLinkModel.cs" />
     <Compile Include="DTOs\EditActivityModel.cs" />
     <Compile Include="DTOs\MoveActivityModel.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Handlers\CreateActivityHandler.cs" />
     <Compile Include="Handlers\CreateLinkHandler.cs" />
     <Compile Include="Handlers\EditActivityHandler.cs" />

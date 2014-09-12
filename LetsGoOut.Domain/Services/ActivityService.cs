@@ -1,6 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using LetsGoOut.Domain.DTOs;
+using LetsGoOut.Domain.Extensions;
 using LetsGoOut.Domain.Requests;
 
 namespace LetsGoOut.Domain.Services
@@ -16,7 +18,8 @@ namespace LetsGoOut.Domain.Services
 
         public CreateActivityModel CreateActivityModel(CreateActivityRequest createActivityRequest)
         {
-            return new CreateActivityModel();
+            var roundUp = DateTime.Now.RoundUp();
+            return new CreateActivityModel { StartAt = roundUp, EndAt = roundUp.AddHours(1) };
         }
 
         public void CreateActivity(CreateActivityModel createActivityModel)

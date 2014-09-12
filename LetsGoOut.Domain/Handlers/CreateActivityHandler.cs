@@ -1,6 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using LetsGoOut.Domain.DTOs;
 using LetsGoOut.Domain.Requests;
+using LetsGoOut.Domain.Extensions;
 
 namespace LetsGoOut.Domain.Handlers
 {
@@ -24,7 +26,8 @@ namespace LetsGoOut.Domain.Handlers
 
         public CreateActivityModel Handle(CreateActivityRequest request)
         {
-            return new CreateActivityModel();
+            var roundUp = DateTime.Now.RoundUp();
+            return new CreateActivityModel { StartAt = roundUp, EndAt = roundUp.AddHours(1) };
         }
     }
 }
