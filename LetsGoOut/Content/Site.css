@@ -46,3 +46,20 @@ a.black-link, a.black-link:hover {
     color: black;
     font-size: 50px;
 }
+
+a.activity-link, a.activity-link:hover {
+    color: black;
+    font-size: 20px;
+}
+
+.food-activity {
+    background-color: #80BF40
+}
+
+.culture-activity {
+    background-color: #2B827C
+}
+
+.evening-activity {
+    background-color: #C7579E
+}
