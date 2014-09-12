@@ -1,16 +1,39 @@
-﻿@model LetsGoOut.ReadModel.Activity
+﻿@using Microsoft.Ajax.Utilities
+@model LetsGoOut.ReadModel.Activity
 @{
     var previous = (int) ViewBag.Previous;
     var next = (int) ViewBag.Next;
+    
 }
 
-<div>
-    @if (Model.Type == 0)
-    {
-        @Html.ActionLink(Model.Type.ToString(), "CreateLink", new { previous = @previous, next = @next})
-    }
-    else
-    {
-        @Model.Type
-    }
+<div class="row">
+    <div class="col-sm-5">
+        <div class="col-md-6"></div>
+        <div class="col-md-6" style="text-align: center">
+            <div style="color: red">
+            <i class="fa fa-long-arrow-down"></i>
+        </div>
+            <div class="link">
+                @if (Model.Type == 0)
+                {
+                    @Html.ActionLink("?", "CreateLink", new { previous = @previous, next = @next }, new { @class = "link" })
+                }
+                else if (Model.Type == 1)
+                {
+                    <i class="fa fa-male"></i>
+                }
+                else if (Model.Type == 2)
+                {
+                    <i class="fa fa-car"></i>
+                }
+                else
+                {
+                    <img src="~/Content/Images/london-underground-256-red.png" style="width: 20px;" />
+                }
+            </div>
+            <div style="color: red">
+                <i class="fa fa-long-arrow-down"></i>
+            </div>
+        </div>
+    </div>
 </div>

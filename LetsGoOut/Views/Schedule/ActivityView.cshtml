@@ -4,7 +4,6 @@
     var typeClass = Model.Type == 1 ? "food-activity" : (Model.Type == 2 ? "culture-activity" : "evening-activity");
 }
 
-<div>
     <div class="row">
         <div class="col-sm-5">
             <div class="col-md-6">
@@ -14,11 +13,12 @@
                 <div style="text-align: right; font-size: 9px">
                     @Model.Duration.ToString(@"h\:mm")
                 </div>
+                <div style="text-align: right; font-size: 9px">
+                    @Html.ActionLink("Move", "Move", new { @Model.ActivityId })
+                </div>
             </div>
             <div class="col-md-6 @typeClass" style="text-align: center; padding-top: 9px; padding-bottom: 9px">
-                @Html.ActionLink(@Model.Name, "Edit", new { @Model.ActivityId }, new { @class = "activity-link" }) <br />
+                @Html.ActionLink(@Model.Name, "Edit", new { @Model.ActivityId }, new { @class = "activity-link" })
             </div>
         </div>
     </div>
-    @Html.ActionLink("Move", "Move", new { @Model.ActivityId })
-</div>

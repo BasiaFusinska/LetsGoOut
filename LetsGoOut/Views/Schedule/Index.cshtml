@@ -5,6 +5,10 @@
 }
 
 <h2>Schedule</h2>
+<a href="@Url.Action("Create")" class="green-link">
+    <i class="fa fa-plus-square"></i>
+</a>
+
 @{
     Activity previous = null;
     foreach (var activityItem in Model)
@@ -31,6 +35,5 @@
     }
 }
 
-@Html.ActionLink("Add", "Create")
 
     
