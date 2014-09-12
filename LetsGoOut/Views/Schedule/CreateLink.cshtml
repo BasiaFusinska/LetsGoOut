@@ -6,12 +6,14 @@
 
 <h2>Link</h2>
 
-@using (Html.BeginForm())
-{
-    
-    @Html.TextBoxFor(model => model.LinkType)
-    
-    <input type="submit" value="CreateLink">
-}
+    <a href="@Url.Action("CreateLinkPost", new { linkType = 1, previous = Model.Previous, next = Model.Next })" class="black-link">
+        <i class="fa fa-male"></i>
+    </a>
+    <a href="@Url.Action("CreateLinkPost", new { linkType = 2, previous = Model.Previous, next = Model.Next })" class="black-link">
+        <i class="fa fa-car"></i>
+    </a>
+    <a href="@Url.Action("CreateLinkPost", new { linkType = 3, previous = Model.Previous, next = Model.Next })" class="black-link">
+        <i class="fa fa-underline"></i>
+    </a>
 
-    
+

@@ -70,10 +70,9 @@ namespace LetsGoOut.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult CreateLink(CreateLinkModel createLinkModel)
+        public ActionResult CreateLinkPost(int previous, int next, int linkType)
         {
-            _bus.Send(createLinkModel);
+            _bus.Send(new CreateLinkModel { LinkType = linkType, Next = next, Previous = previous });
 
             return RedirectToAction("Index");
         }

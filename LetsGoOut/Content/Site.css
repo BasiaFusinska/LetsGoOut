@@ -40,3 +40,9 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+
+a.black-link, a.black-link:hover {
+    color: black;
+    font-size: 50px;
+}
