@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using LetsGoOut.Domain.DTOs;
 using LetsGoOut.Domain.Requests;
@@ -18,7 +19,7 @@ namespace LetsGoOut.Domain.Handlers
         public void Handle(MoveActivityModel moveActivityModel)
         {
             var activity = _context.Set<Activity>().FirstOrDefault(a => a.ActivityId == moveActivityModel.ActivityId);
-            activity.Move(moveActivityModel.Offset);
+            activity.Move(TimeSpan.FromMinutes(30*moveActivityModel.Offset));
         }
 
         public MoveActivityModel Handle(MoveActivityRequest moveActivityRequest)
